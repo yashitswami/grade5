@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Matter — Grade 5 Science | NV Classes</title>
+<style>
+:root{
+  --ink:#1a2b2f;
+  --paper:#f4efe1;
+  --paper2:#ece4d0;
+  --flask:#1f8a70;
+  --flask-d:#0f5f4c;
+  --amber:#d98324;
+  --crimson:#9b2226;
+  --cobalt:#2b50aa;
+  --line:#c9bda0;
+  --gold:#caa24a;
+  --sky:#e8f4fd;
+  --shadow:rgba(31,43,47,.16);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Georgia,'Palatino Linotype',serif;background:var(--paper);color:var(--ink);line-height:1.7;position:relative}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(180,160,100,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(180,160,100,.08) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;z-index:0}
+
+/* progress rail */
+.progress-rail{position:fixed;top:0;left:0;width:100%;height:6px;background:var(--paper2);z-index:100}
+#progressBar{height:100%;width:0;background:linear-gradient(90deg,var(--flask),var(--amber));transition:width .1s}
+
+/* hero */
+.hero{background:linear-gradient(135deg,var(--flask-d),var(--flask));color:#fff;padding:54px 24px 44px;text-align:center;position:relative;overflow:hidden}
+.hero-eyebrow{font-family:'Courier New',monospace;font-size:.8rem;letter-spacing:.2em;opacity:.8;margin-bottom:10px}
+.hero h1{font-size:clamp(2rem,6vw,3.2rem);font-weight:bold;margin-bottom:10px}
+.hero-sub{font-size:1.1rem;opacity:.88;max-width:560px;margin:0 auto 16px}
+.hero-badge{display:inline-block;background:rgba(255,255,255,.18);border:1.5px solid rgba(255,255,255,.4);border-radius:20px;font-family:'Courier New',monospace;font-size:.75rem;padding:4px 16px;letter-spacing:.1em}
+.bubble{position:absolute;border-radius:50%;background:rgba(255,255,255,.12);animation:rise 6s infinite ease-in}
+@keyframes rise{0%{transform:translateY(0) scale(1);opacity:.7}100%{transform:translateY(-320px) scale(.4);opacity:0}}
+
+/* nav */
+.toc{background:var(--flask-d);position:sticky;top:6px;z-index:90;padding:0 16px;overflow-x:auto;white-space:nowrap}
+.toc ul{display:flex;list-style:none;gap:2px;padding:6px 0}
+.toc a{font-family:'Courier New',monospace;font-size:.72rem;color:rgba(255,255,255,.75);text-decoration:none;padding:5px 10px;border-radius:6px;transition:.2s}
+.toc a:hover{background:rgba(255,255,255,.15);color:#fff}
+
+/* wrap */
+.wrap{max-width:880px;margin:0 auto;padding:28px 18px 60px;position:relative;z-index:1}
+
+/* sections */
+section{margin-bottom:52px}
+.sec-head{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.sec-num{background:var(--ink);color:#fff;font-family:'Courier New',monospace;font-size:.85rem;font-weight:bold;padding:4px 9px;border-radius:4px}
+.sec-head h2{color:var(--flask-d);font-size:1.5rem}
+
+/* cards */
+.card{background:rgba(255,252,245,.82);border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-bottom:16px;box-shadow:0 4px 16px var(--shadow)}
+.lead{font-size:1.08rem;color:var(--flask-d);font-weight:bold;margin-bottom:10px}
+.term{color:var(--flask-d);font-weight:bold}
+mark{background:#fef3c7;border-radius:3px;padding:1px 3px}
+.pill{display:inline-block;background:var(--flask-d);color:#fff;font-family:'Courier New',monospace;font-size:.72rem;padding:2px 10px;border-radius:12px;margin:2px}
+
+/* infonote */
+.infonote{background:#eef4fb;border:1px solid #bcd3ef;border-left:4px solid var(--cobalt);border-radius:10px;padding:14px 18px;margin:14px 0}
+.infonote-head{font-family:Georgia;font-weight:bold;color:#1a3576;margin-bottom:6px}
+
+/* wonder box */
+.wonder{background:linear-gradient(135deg,#fff8e7,#fef3c7);border:2px dashed var(--amber);border-radius:14px;padding:20px 22px;margin:16px 0}
+.wonder-head{color:var(--amber);font-weight:bold;font-size:1.05rem;margin-bottom:8px}
+
+/* experiment box */
+.experiment{background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:2px solid var(--flask);border-radius:14px;padding:20px 22px;margin:16px 0}
+.experiment-head{color:var(--flask-d);font-weight:bold;font-size:1.05rem;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.exp-step{display:flex;gap:12px;margin:8px 0;align-items:flex-start}
+.exp-num{background:var(--flask);color:#fff;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:.85rem;flex-shrink:0;margin-top:2px}
+
+/* phase badge */
+.phase-badge{display:inline-block;font-family:'Courier New',monospace;font-size:.72rem;font-weight:bold;padding:3px 12px;border-radius:14px;margin-bottom:10px;letter-spacing:.06em}
+.ph-hook{background:#fef3c7;color:#92400e}
+.ph-explore{background:#d1fae5;color:#065f46}
+.ph-discuss{background:#dbeafe;color:#1e40af}
+.ph-concept{background:#ede9fe;color:#4c1d95}
+.ph-apply{background:#fee2e2;color:#7f1d1d}
+.ph-time{background:var(--paper2);color:var(--ink);margin-left:8px}
+
+/* diagrams */
+.diagram{background:#fbf7ec;border:1px solid var(--line);border-radius:14px;padding:16px 16px 10px;margin:18px 0;box-shadow:0 5px 18px var(--shadow)}
+.diagram svg{display:block;width:100%;height:auto;max-height:260px}
+.dcap{font-size:.86rem;color:var(--flask-d);text-align:center;margin-top:8px;font-style:italic}
+
+/* games */
+.game{background:linear-gradient(180deg,#fffdf6,#f7f0df);border:2px solid var(--flask);border-radius:16px;padding:24px;margin:22px 0;box-shadow:0 8px 26px var(--shadow)}
+.game h3{color:var(--flask-d);display:flex;align-items:center;gap:10px;margin-bottom:16px;font-size:1.15rem}
+.btn{font-family:'Courier New',monospace;font-weight:bold;cursor:pointer;background:var(--flask);color:#fff;border:none;padding:10px 18px;border-radius:8px;transition:.18s;font-size:.85rem}
+.btn:hover{background:var(--flask-d)}
+.btn.ghost{background:transparent;color:var(--flask-d);border:1.5px solid var(--flask)}
+.btn.amber-btn{background:var(--amber)}
+.btn.amber-btn:hover{background:#b56a1a}
+.feedback{margin-top:12px;font-weight:bold;min-height:24px;font-size:.95rem}
+.ok{color:var(--flask-d)} .no{color:var(--crimson)}
+
+/* drag drop */
+.dd-bank{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0;padding:12px;background:var(--paper2);border-radius:10px;min-height:48px}
+.chip{background:#fff;border:2px solid var(--line);border-radius:20px;padding:6px 16px;cursor:grab;font-weight:bold;font-size:.9rem;transition:.2s;user-select:none}
+.chip:hover{border-color:var(--flask);transform:scale(1.04)}
+.chip.correct{background:#d9efe5;border-color:var(--flask-d);color:var(--flask-d)}
+.chip.wrong{background:#f3dada;border-color:var(--crimson);color:var(--crimson)}
+.dd-bins{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:12px 0}
+.bin{background:rgba(255,255,255,.7);border:2.5px dashed var(--amber);border-radius:12px;padding:12px 10px;min-height:90px;transition:.2s}
+.bin.drag-over{background:#fef3c7;border-color:var(--flask)}
+.bin-label{font-weight:bold;color:var(--amber);font-size:.85rem;margin-bottom:8px;font-family:'Courier New',monospace;text-align:center}
+@media(max-width:600px){.dd-bins{grid-template-columns:1fr}}
+
+/* match */
+.match-wrap{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:12px 0}
+.match-col{display:flex;flex-direction:column;gap:8px}
+.m-item{background:#fff;border:2px solid var(--line);border-radius:10px;padding:10px 14px;cursor:pointer;font-size:.9rem;font-weight:bold;transition:.2s}
+.m-item:hover{border-color:var(--flask);background:#f0fdf4}
+.m-item.selected{border-color:var(--cobalt);background:#dbeafe}
+.m-item.matched{border-color:var(--flask-d);background:#d9efe5;cursor:default;opacity:.85}
+.m-item.wrong-flash{border-color:var(--crimson);background:#fee2e2;animation:shake .3s}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+@media(max-width:600px){.match-wrap{grid-template-columns:1fr}}
+
+/* flashcard */
+.fc-stage{perspective:800px;margin:14px auto;max-width:420px;height:180px;cursor:pointer}
+.fc-inner{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:.6s;border-radius:16px}
+.fc-inner.flip{transform:rotateY(180deg)}
+.fc-face{position:absolute;inset:0;backface-visibility:hidden;border-radius:16px;display:flex;align-items:center;justify-content:center;padding:22px;text-align:center;font-size:1.1rem;font-weight:bold}
+.fc-front{background:linear-gradient(135deg,var(--flask-d),var(--flask));color:#fff}
+.fc-back{background:linear-gradient(135deg,#fff8e7,#fef3c7);color:var(--ink);border:2px solid var(--amber);transform:rotateY(180deg)}
+.fc-counter{text-align:center;font-family:'Courier New',monospace;font-size:.8rem;color:var(--flask-d);margin-top:8px;font-weight:bold}
+.fc-btns{display:flex;justify-content:center;gap:10px;margin-top:12px}
+
+/* crossword */
+.cw-layout{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:12px 0}
+.cw-grid{display:inline-block}
+.cw-row{display:flex}
+.cw-cell{width:36px;height:36px;border:2px solid #aaa;display:flex;align-items:center;justify-content:center;position:relative;background:#fff}
+.cw-cell.blocked{background:var(--ink);border-color:var(--ink);pointer-events:none}
+.cw-cell input{width:100%;height:100%;border:none;outline:none;text-align:center;font-family:'Courier New',monospace;font-weight:bold;font-size:1rem;text-transform:uppercase;background:transparent;color:var(--ink)}
+.cw-cell.correct-cell{background:#d9efe5}
+.cw-cell.wrong-cell{background:#fee2e2}
+.cw-clue-num{position:absolute;top:1px;left:2px;font-size:.5rem;font-weight:bold;color:var(--cobalt);line-height:1}
+.cw-clues{font-size:.88rem}
+.cw-clues h4{color:var(--flask-d);margin:10px 0 6px;font-family:'Courier New',monospace}
+.cw-clues li{margin:4px 0;color:var(--ink);font-weight:bold}
+@media(max-width:600px){.cw-layout{grid-template-columns:1fr}}
+
+/* sequencer */
+.seq-list{list-style:none;margin:12px 0}
+.seq-item{display:flex;align-items:center;gap:10px;background:#fff;border:2px solid var(--line);border-radius:10px;padding:10px 14px;margin:6px 0;font-size:.9rem;font-weight:bold}
+.seq-btns{display:flex;flex-direction:column;gap:3px}
+.seq-btn{background:var(--flask);color:#fff;border:none;border-radius:5px;width:26px;height:22px;cursor:pointer;font-size:.8rem;font-weight:bold;line-height:1}
+.seq-btn:hover{background:var(--flask-d)}
+.seq-num{background:var(--amber);color:#fff;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:.8rem;flex-shrink:0}
+
+/* type quiz */
+.tq-item{background:#fff;border:1.5px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0}
+.tq-q{font-weight:bold;margin-bottom:8px;font-size:.92rem}
+.tq-opts{display:flex;flex-wrap:wrap;gap:8px}
+.tq-opt{font-family:'Courier New',monospace;font-size:.8rem;font-weight:bold;padding:6px 14px;border-radius:18px;border:2px solid var(--line);background:var(--paper);cursor:pointer;transition:.18s}
+.tq-opt:hover{border-color:var(--flask);background:#f0fdf4}
+.tq-opt.correct{background:#d9efe5;border-color:var(--flask-d);color:var(--flask-d)}
+.tq-opt.wrong{background:#fee2e2;border-color:var(--crimson);color:var(--crimson)}
+
+/* quiz */
+.quiz-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin:14px 0;box-shadow:0 2px 10px var(--shadow)}
+.q-tag{float:right;font-family:'Courier New',monospace;font-size:.66rem;background:var(--paper2);color:var(--flask-d);padding:2px 9px;border-radius:12px;font-weight:bold}
+.q-num{color:var(--amber);font-family:'Courier New',monospace;font-weight:bold;font-size:.8rem;margin-bottom:6px}
+.q-text{font-weight:bold;margin-bottom:12px;font-size:.97rem;color:var(--ink)}
+.opt{display:block;width:100%;text-align:left;background:var(--paper);border:1.5px solid var(--line);border-radius:9px;padding:11px 14px;margin:7px 0;cursor:pointer;font-size:.9rem;font-family:Georgia,serif;transition:.18s}
+.opt:hover{border-color:var(--flask);background:#f0fdf4}
+.opt.correct{background:#d9efe5;border-color:var(--flask-d);color:var(--flask-d);font-weight:bold}
+.opt.wrong{background:#f3dada;border-color:var(--crimson);color:var(--crimson)}
+.explain{margin-top:10px;padding:11px 14px;background:#fff7e6;border-left:4px solid var(--gold);border-radius:6px;display:none;font-size:.88rem}
+.explain.show{display:block}
+
+/* score bar */
+.scorebar{position:fixed;bottom:0;left:0;width:100%;background:var(--flask-d);color:#fff;padding:10px 20px;display:flex;justify-content:space-between;align-items:center;z-index:90;font-family:'Courier New',monospace;font-weight:bold;font-size:.85rem}
+.score-track{background:rgba(255,255,255,.2);border-radius:8px;height:8px;width:160px;overflow:hidden}
+.score-fill{height:100%;background:var(--amber);transition:.4s;border-radius:8px}
+
+/* lesson plan table */
+.lp-table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.9rem}
+.lp-table th{background:var(--flask-d);color:#fff;padding:10px 12px;text-align:left;font-family:'Courier New',monospace;font-size:.78rem}
+.lp-table td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+.lp-table tr:nth-child(even) td{background:rgba(255,255,255,.5)}
+.lp-table tr:hover td{background:#f0fdf4}
+
+/* exit ticket */
+.exit-ticket{background:linear-gradient(135deg,#fef9c3,#fef3c7);border:2px dashed var(--gold);border-radius:14px;padding:22px;margin:16px 0}
+.exit-ticket h4{color:#92400e;font-size:1rem;margin-bottom:12px}
+.et-q{background:#fff;border-radius:8px;padding:10px 14px;margin:8px 0;font-size:.9rem;border-left:4px solid var(--gold)}
+.et-input{width:100%;border:none;border-bottom:2px solid var(--gold);background:transparent;margin-top:6px;font-family:Georgia,serif;font-size:.9rem;padding:4px 2px;outline:none}
+
+footer{background:var(--flask-d);color:rgba(255,255,255,.7);text-align:center;padding:20px;font-family:'Courier New',monospace;font-size:.78rem}
+
+@media(prefers-reduced-motion:reduce){
+  .bubble,.chip,.m-item,.fc-inner,.seq-item{animation:none;transition:none}
+}
+</style>
+</head>
+<body>
+
+<div class="progress-rail"><div id="progressBar"></div></div>
+
+<header class="hero">
+  <div class="hero-eyebrow">NV CLASSES · GRADE 5 SCIENCE</div>
+  <h1>🔬 What Is Matter?</h1>
+  <div class="hero-sub">An experience-first lesson — discover, explore, and figure it out yourself!</div>
+  <div class="hero-badge">60-MINUTE LESSON PLAN + INTERACTIVE MODULE</div>
+</header>
+
+<nav class="toc">
+  <ul>
+    <li><a href="#lessonplan">📋 Lesson Plan</a></li>
+    <li><a href="#hook">🪄 The Hook</a></li>
+    <li><a href="#explore">🧪 Explore</a></li>
+    <li><a href="#states">🧊 States</a></li>
+    <li><a href="#particles">⚛️ Particles</a></li>
+    <li><a href="#changes">🔥 Changes</a></li>
+    <li><a href="#games">🎮 Games</a></li>
+    <li><a href="#exam">📝 Quiz</a></li>
+  </ul>
+</nav>
+
+<div class="wrap">
+
+<!-- SECTION: LESSON PLAN OVERVIEW -->
+<section id="lessonplan">
+  <div class="sec-head"><span class="sec-num">0</span><h2>Teacher's Lesson Plan Overview</h2></div>
+  <div class="card">
+    <p class="lead">Topic: Matter — What Is It? What Are Its States?</p>
+    <p style="margin-bottom:14px"><strong>Grade:</strong> 5 &nbsp;|&nbsp; <strong>Duration:</strong> 60 minutes &nbsp;|&nbsp; <strong>Approach:</strong> Experience First, Name Later</p>
+    <table class="lp-table">
+      <tr><th>PHASE</th><th>ACTIVITY</th><th>TIME</th><th>WHAT THE TEACHER DOES</th></tr>
+      <tr>
+        <td><span class="phase-badge ph-hook">🪄 HOOK</span></td>
+        <td><strong>The Mystery Rock & Cloud</strong><br>Show ice, water, steam (or a melting ice cube). Ask: "Are all three the same thing?"</td>
+        <td><span class="phase-badge ph-time">5–7 min</span></td>
+        <td>Create cognitive dissonance. Accept all guesses. Write them on the board. Do NOT explain yet.</td>
+      </tr>
+      <tr>
+        <td><span class="phase-badge ph-explore">🧪 EXPLORE</span></td>
+        <td><strong>Station Experiments</strong><br>Groups test: sugar in water, blowing up a balloon, squeezing a sealed syringe, comparing ice/water/air.</td>
+        <td><span class="phase-badge ph-time">15–18 min</span></td>
+        <td>Circulate. Ask "What do you notice? Does it change shape? Can you compress it?" Never give answers. Give a prediction sheet before starting.</td>
+      </tr>
+      <tr>
+        <td><span class="phase-badge ph-discuss">💬 DISCUSS</span></td>
+        <td><strong>Group Share-Out</strong><br>"What did your group observe? Who got a different result?"</td>
+        <td><span class="phase-badge ph-time">10–12 min</span></td>
+        <td>Use Socratic questions. Write student observations on the board in THEIR words. Connect groups' findings.</td>
+      </tr>
+      <tr>
+        <td><span class="phase-badge ph-concept">📖 CONCEPT</span></td>
+        <td><strong>Name the Discovery</strong><br>Introduce: Matter, Solid, Liquid, Gas, Particles. Connect each to what they observed.</td>
+        <td><span class="phase-badge ph-time">10 min</span></td>
+        <td>Draw particle diagrams LIVE on board. Use their words first, then scientific terms. Max 3 new vocab words.</td>
+      </tr>
+      <tr>
+        <td><span class="phase-badge ph-apply">✅ APPLY</span></td>
+        <td><strong>New Scenario + Exit Ticket</strong><br>"What state is perfume when you spray it? What about honey?"</td>
+        <td><span class="phase-badge ph-time">10–12 min</span></td>
+        <td>Let students debate. Then Exit Ticket: 3 sentences. Collect and read before next class.</td>
+      </tr>
+    </table>
+    <div class="infonote">
+      <div class="infonote-head">🎯 Learning Goals (by end of class)</div>
+      Students can: (1) name the 3 states of matter from observation, (2) describe how particles are arranged differently in each state, (3) give one real-life example of each state, (4) ask one new question about matter.
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: HOOK -->
+<section id="hook">
+  <div class="sec-head"><span class="sec-num">1</span><h2>Phase 1 — The Hook</h2></div>
+  <div class="wonder">
+    <div class="wonder-head">🪄 The Wonder Starter (5–7 minutes)</div>
+    <p>Walk in with an ice cube on a plate. Hold it up and ask three questions — then <em>wait</em>:</p>
+    <ul style="margin:10px 0 10px 22px;line-height:2.1">
+      <li>"What is this made of?" <em>(water)</em></li>
+      <li>"What is the steam above a boiling kettle made of?" <em>(water)</em></li>
+      <li>"If both are water... why do they look and behave so differently?"</li>
+    </ul>
+    <p>Write all student guesses on the board. Don't correct any. Then say: <strong>"Let's find out."</strong></p>
+  </div>
+  <div class="card">
+    <p class="lead">Why this works</p>
+    <p>The brain is now hungry. You've created a <mark>gap between what they think they know and what they don't know</mark>. This is called a <span class="term">curiosity gap</span> — and it's the most powerful motivator for learning. The next 45 minutes will feel like solving a mystery, not sitting in a lecture.</p>
+  </div>
+  <div class="diagram">
+    <svg viewBox="0 0 500 200" role="img" aria-label="Ice, liquid water, and steam — three states of the same substance">
+      <defs>
+        <linearGradient id="iceGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#bfdbfe"/><stop offset="100%" stop-color="#93c5fd"/>
+        </linearGradient>
+        <linearGradient id="waterGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#7dd3fc"/><stop offset="100%" stop-color="#0ea5e9"/>
+        </linearGradient>
+      </defs>
+      <!-- Ice cube -->
+      <rect x="30" y="80" width="90" height="90" rx="8" fill="url(#iceGrad)" stroke="#60a5fa" stroke-width="2"/>
+      <line x1="30" y1="80" x2="120" y2="170" stroke="#fff" stroke-width="1" opacity=".5"/>
+      <line x1="120" y1="80" x2="30" y2="170" stroke="#fff" stroke-width="1" opacity=".5"/>
+      <text x="75" y="68" text-anchor="middle" font-family="Courier New" font-size="12" font-weight="bold" fill="#1e40af">🧊 SOLID</text>
+      <text x="75" y="190" text-anchor="middle" font-family="Georgia" font-size="10" fill="#1e3a8a">Fixed shape ✓</text>
+      <text x="75" y="200" text-anchor="middle" font-family="Georgia" font-size="10" fill="#1e3a8a">Fixed volume ✓</text>
+      <!-- Water in glass -->
+      <rect x="195" y="90" width="70" height="80" rx="4" fill="url(#waterGrad)" stroke="#0284c7" stroke-width="2"/>
+      <rect x="195" y="88" width="70" height="10" rx="2" fill="#bae6fd" opacity=".7"/>
+      <rect x="186" y="82" width="88" height="12" rx="4" fill="none" stroke="#64748b" stroke-width="2"/>
+      <text x="230" y="68" text-anchor="middle" font-family="Courier New" font-size="12" font-weight="bold" fill="#0369a1">💧 LIQUID</text>
+      <text x="230" y="190" text-anchor="middle" font-family="Georgia" font-size="10" fill="#0369a1">No fixed shape ✗</text>
+      <text x="230" y="200" text-anchor="middle" font-family="Georgia" font-size="10" fill="#0369a1">Fixed volume ✓</text>
+      <!-- Steam cloud -->
+      <ellipse cx="390" cy="130" rx="55" ry="38" fill="#e0f2fe" stroke="#7dd3fc" stroke-width="2"/>
+      <ellipse cx="365" cy="118" rx="30" ry="22" fill="#bae6fd" stroke="#7dd3fc" stroke-width="1.5"/>
+      <ellipse cx="415" cy="122" rx="28" ry="20" fill="#bae6fd" stroke="#7dd3fc" stroke-width="1.5"/>
+      <ellipse cx="390" cy="108" rx="24" ry="18" fill="#e0f2fe" stroke="#7dd3fc" stroke-width="1.5"/>
+      <!-- wiggly steam lines -->
+      <path d="M380,170 Q376,160 380,150 Q384,140 380,130" stroke="#7dd3fc" stroke-width="2" fill="none" class="steam-waft"/>
+      <path d="M390,175 Q386,163 390,152 Q394,141 390,130" stroke="#7dd3fc" stroke-width="2" fill="none" class="steam-waft"/>
+      <text x="390" y="68" text-anchor="middle" font-family="Courier New" font-size="12" font-weight="bold" fill="#0369a1">☁️ GAS</text>
+      <text x="390" y="190" text-anchor="middle" font-family="Georgia" font-size="10" fill="#075985">No fixed shape ✗</text>
+      <text x="390" y="200" text-anchor="middle" font-family="Georgia" font-size="10" fill="#075985">No fixed volume ✗</text>
+      <!-- label: All are WATER -->
+      <text x="250" y="20" text-anchor="middle" font-family="Georgia" font-size="14" font-weight="bold" fill="#1a2b2f">All three are water — but so different! Why?</text>
+    </svg>
+    <p class="dcap">Ice, liquid water, and steam — all made of the same substance, behaving completely differently.</p>
+  </div>
+</section>
+
+<!-- SECTION: EXPLORE -->
+<section id="explore">
+  <div class="sec-head"><span class="sec-num">2</span><h2>Phase 2 — Explore (Station Experiments)</h2></div>
+  <div class="card">
+    <p class="lead">Set up 3 stations for groups of 3–4 students</p>
+    <p>Give each group a <em>Prediction Sheet</em> first: "What do you think will happen? Write your guess before trying!"</p>
+  </div>
+
+  <div class="experiment">
+    <div class="experiment-head">🧂 Station A — Sugar Disappears (Liquid)</div>
+    <p style="margin-bottom:10px"><strong>Materials:</strong> A glass of water, a spoon of sugar</p>
+    <div class="exp-step"><div class="exp-num">1</div><div>Predict: Where will the sugar go?</div></div>
+    <div class="exp-step"><div class="exp-num">2</div><div>Stir the sugar into the water. Watch carefully.</div></div>
+    <div class="exp-step"><div class="exp-num">3</div><div>Taste the water. What do you notice?</div></div>
+    <div class="exp-step"><div class="exp-num">4</div><div>Discuss: Did the sugar disappear? Or is it still there?</div></div>
+    <div class="infonote" style="margin-top:10px">
+      <div class="infonote-head">Teacher Prompt</div>
+      "If matter cannot be destroyed, where is the sugar now?" — Let students debate. Don't confirm.
+    </div>
+  </div>
+
+  <div class="experiment">
+    <div class="experiment-head">🎈 Station B — Invisible Air (Gas)</div>
+    <p style="margin-bottom:10px"><strong>Materials:</strong> A balloon, a sealed plastic syringe (with no needle)</p>
+    <div class="exp-step"><div class="exp-num">1</div><div>Blow up the balloon. Feel its weight — does it weigh more now?</div></div>
+    <div class="exp-step"><div class="exp-num">2</div><div>Push the syringe plunger down with the tip sealed. What do you feel?</div></div>
+    <div class="exp-step"><div class="exp-num">3</div><div>Let go. What happens?</div></div>
+    <div class="exp-step"><div class="exp-num">4</div><div>Discuss: If you can't see air, is it real? Does it take up space?</div></div>
+    <div class="infonote" style="margin-top:10px">
+      <div class="infonote-head">Teacher Prompt</div>
+      "Can you compress the water in the same way?" — (No, you cannot.) "Why not?"
+    </div>
+  </div>
+
+  <div class="experiment">
+    <div class="experiment-head">🧊 Station C — Ice vs Water vs Air (Compare All 3)</div>
+    <p style="margin-bottom:10px"><strong>Materials:</strong> Ice cube, glass of water, empty sealed bottle</p>
+    <div class="exp-step"><div class="exp-num">1</div><div>Put the ice in a bowl. Does it keep its shape or take the shape of the bowl?</div></div>
+    <div class="exp-step"><div class="exp-num">2</div><div>Pour water into different containers. What shape does it take?</div></div>
+    <div class="exp-step"><div class="exp-num">3</div><div>Try to squeeze the sealed bottle slightly. What happens to the air inside?</div></div>
+    <div class="exp-step"><div class="exp-num">4</div><div>Make a table: Which one keeps its shape? Which fills its container? Which can be squeezed?</div></div>
+  </div>
+</section>
+
+<!-- SECTION: STATES OF MATTER -->
+<section id="states">
+  <div class="sec-head"><span class="sec-num">3</span><h2>Phase 3 → Concept: The Three States</h2></div>
+  <div class="card">
+    <p class="lead">From your experiments, you discovered this yourself:</p>
+    <p><span class="term">Matter</span> is <mark>anything that has mass and takes up space.</mark> Everything you can touch, smell, or see is matter. Even air!</p>
+    <p style="margin-top:10px">Matter exists in three main states — and you just explored all three:</p>
+  </div>
+
+  <div class="diagram">
+    <svg viewBox="0 0 500 220" role="img" aria-label="Particle arrangement in solids, liquids, and gases showing tight, medium, and spread-out particles">
+      <!-- SOLID -->
+      <rect x="20" y="30" width="140" height="140" rx="10" fill="#dbeafe" stroke="#2b50aa" stroke-width="2"/>
+      <text x="90" y="22" text-anchor="middle" font-family="Courier New" font-size="12" font-weight="bold" fill="#1e3a8a">SOLID</text>
+      <!-- grid of particles -->
+      <g fill="#2b50aa">
+        <circle cx="50" cy="60" r="14"/><circle cx="90" cy="60" r="14"/><circle cx="130" cy="60" r="14"/>
+        <circle cx="50" cy="100" r="14"/><circle cx="90" cy="100" r="14"/><circle cx="130" cy="100" r="14"/>
+        <circle cx="50" cy="140" r="14"/><circle cx="90" cy="140" r="14"/><circle cx="130" cy="140" r="14"/>
+      </g>
+      <text x="90" y="63" text-anchor="middle" font-family="Courier New" font-size="9" fill="#fff" font-weight="bold">●</text>
+      <text x="90" y="185" text-anchor="middle" font-family="Georgia" font-size="10" fill="#1e3a8a">Tightly packed</text>
+      <text x="90" y="197" text-anchor="middle" font-family="Georgia" font-size="10" fill="#1e3a8a">Vibrate in place</text>
+      <text x="90" y="209" text-anchor="middle" font-family="Georgia" font-size="10" fill="#1e3a8a">Fixed shape + volume</text>
+
+      <!-- LIQUID -->
+      <rect x="180" y="30" width="140" height="140" rx="10" fill="#bae6fd" stroke="#0369a1" stroke-width="2"/>
+      <text x="250" y="22" text-anchor="middle" font-family="Courier New" font-size="12" font-weight="bold" fill="#0369a1">LIQUID</text>
+      <!-- irregular cluster -->
+      <g fill="#0369a1">
+        <circle cx="210" cy="65" r="13"/><circle cx="248" cy="58" r="13"/><circle cx="285" cy="63" r="13"/>
+        <circle cx="222" cy="100" r="13"/><circle cx="262" cy="97" r="13"/><circle cx="295" cy="103" r="13"/>
+        <circle cx="207" cy="138" r="13"/><circle cx="248" cy="133" r="13"/><circle cx="280" cy="140" r="13"/>
+      </g>
+      <text x="250" y="185" text-anchor="middle" font-family="Georgia" font-size="10" fill="#0369a1">Loosely packed</text>
+      <text x="250" y="197" text-anchor="middle" font-family="Georgia" font-size="10" fill="#0369a1">Slide past each other</text>
+      <text x="250" y="209" text-anchor="middle" font-family="Georgia" font-size="10" fill="#0369a1">No fixed shape</text>
+
+      <!-- GAS -->
+      <rect x="340" y="30" width="140" height="140" rx="10" fill="#f0fdf4" stroke="#1f8a70" stroke-width="2" stroke-dasharray="6,3"/>
+      <text x="410" y="22" text-anchor="middle" font-family="Courier New" font-size="12" font-weight="bold" fill="#065f46">GAS</text>
+      <!-- scattered particles -->
+      <g fill="#1f8a70">
+        <circle cx="365" cy="55" r="11"/><circle cx="430" cy="48" r="11"/><circle cx="460" cy="80" r="11"/>
+        <circle cx="355" cy="110" r="11"/><circle cx="410" cy="100" r="11"/><circle cx="465" cy="130" r="11"/>
+        <circle cx="375" cy="155" r="11"/><circle cx="445" cy="155" r="11"/>
+      </g>
+      <text x="410" y="185" text-anchor="middle" font-family="Georgia" font-size="10" fill="#065f46">Far apart</text>
+      <text x="410" y="197" text-anchor="middle" font-family="Georgia" font-size="10" fill="#065f46">Move freely + fast</text>
+      <text x="410" y="209" text-anchor="middle" font-family="Georgia" font-size="10" fill="#065f46">No fixed shape or volume</text>
+    </svg>
+    <p class="dcap">Particle arrangement in solids, liquids, and gases — this is WHY they behave differently.</p>
+  </div>
+
+  <div class="card">
+    <table style="width:100%;border-collapse:collapse;font-size:.9rem">
+      <tr style="background:var(--flask-d);color:#fff">
+        <th style="padding:10px;text-align:left;font-family:'Courier New'">Property</th>
+        <th style="padding:10px;text-align:center;font-family:'Courier New'">Solid 🧊</th>
+        <th style="padding:10px;text-align:center;font-family:'Courier New'">Liquid 💧</th>
+        <th style="padding:10px;text-align:center;font-family:'Courier New'">Gas 💨</th>
+      </tr>
+      <tr style="background:rgba(255,255,255,.6)">
+        <td style="padding:9px 10px;font-weight:bold">Fixed Shape?</td>
+        <td style="padding:9px;text-align:center">✅ Yes</td>
+        <td style="padding:9px;text-align:center">❌ No</td>
+        <td style="padding:9px;text-align:center">❌ No</td>
+      </tr>
+      <tr>
+        <td style="padding:9px 10px;font-weight:bold">Fixed Volume?</td>
+        <td style="padding:9px;text-align:center">✅ Yes</td>
+        <td style="padding:9px;text-align:center">✅ Yes</td>
+        <td style="padding:9px;text-align:center">❌ No</td>
+      </tr>
+      <tr style="background:rgba(255,255,255,.6)">
+        <td style="padding:9px 10px;font-weight:bold">Can be compressed?</td>
+        <td style="padding:9px;text-align:center">❌ No</td>
+        <td style="padding:9px;text-align:center">❌ No</td>
+        <td style="padding:9px;text-align:center">✅ Yes</td>
+      </tr>
+      <tr>
+        <td style="padding:9px 10px;font-weight:bold">Particles</td>
+        <td style="padding:9px;text-align:center">Tightly packed</td>
+        <td style="padding:9px;text-align:center">Loosely packed</td>
+        <td style="padding:9px;text-align:center">Very far apart</td>
+      </tr>
+    </table>
+  </div>
+</section>
+
+<!-- SECTION: PARTICLES -->
+<section id="particles">
+  <div class="sec-head"><span class="sec-num">4</span><h2>The Particle Idea — Matter Up Close</h2></div>
+  <div class="card">
+    <p class="lead">Everything is made of tiny particles — too small to see.</p>
+    <p>Imagine a crowd at a cricket stadium. When the stadium is full, everyone is packed tight — they can only <mark>wiggle in place</mark>. That's a <span class="term">solid</span>. After the match, people start leaving — now they can <mark>move around each other</mark>. That's a <span class="term">liquid</span>. Outside the stadium, people scatter everywhere — they can <mark>go anywhere</mark>. That's a <span class="term">gas</span>.</p>
+  </div>
+  <div class="wonder">
+    <div class="wonder-head">🤔 Think About This</div>
+    <p>When you open a perfume bottle across the room, you can smell it without touching it. How did the particles of perfume reach your nose? What state of matter does this tell you perfume particles become?</p>
+  </div>
+  <div class="diagram">
+    <svg viewBox="0 0 500 180" role="img" aria-label="Stadium analogy showing particle behaviour for solid liquid and gas">
+      <!-- solid -->
+      <rect x="10" y="20" width="150" height="120" rx="10" fill="#dbeafe" stroke="#2b50aa" stroke-width="2"/>
+      <text x="85" y="14" text-anchor="middle" font-family="Courier New" font-size="11" font-weight="bold" fill="#1e3a8a">SOLID</text>
+      <text x="85" y="36" text-anchor="middle" font-family="Georgia" font-size="9" fill="#1e3a8a">Stadium FULL</text>
+      <!-- tiny people grid -->
+      <g font-family="Georgia" font-size="14" text-anchor="middle">
+        <text x="38" y="65">🧍</text><text x="63" y="65">🧍</text><text x="88" y="65">🧍</text><text x="113" y="65">🧍</text><text x="138" y="65">🧍</text>
+        <text x="38" y="90">🧍</text><text x="63" y="90">🧍</text><text x="88" y="90">🧍</text><text x="113" y="90">🧍</text><text x="138" y="90">🧍</text>
+        <text x="38" y="115">🧍</text><text x="63" y="115">🧍</text><text x="88" y="115">🧍</text><text x="113" y="115">🧍</text><text x="138" y="115">🧍</text>
+      </g>
+      <text x="85" y="155" text-anchor="middle" font-family="Georgia" font-size="9" font-style="italic" fill="#1e3a8a">Vibrate in place only</text>
+
+      <!-- liquid -->
+      <rect x="175" y="20" width="150" height="120" rx="10" fill="#bae6fd" stroke="#0369a1" stroke-width="2"/>
+      <text x="250" y="14" text-anchor="middle" font-family="Courier New" font-size="11" font-weight="bold" fill="#0369a1">LIQUID</text>
+      <text x="250" y="36" text-anchor="middle" font-family="Georgia" font-size="9" fill="#0369a1">Match just ended</text>
+      <g font-family="Georgia" font-size="14" text-anchor="middle">
+        <text x="205" y="68">🚶</text><text x="235" y="72">🚶</text><text x="265" y="65">🚶</text><text x="295" y="70">🚶</text>
+        <text x="210" y="98">🚶</text><text x="248" y="95">🚶</text><text x="282" y="100">🚶</text>
+        <text x="205" y="125">🚶</text><text x="238" y="122">🚶</text><text x="270" y="128">🚶</text><text x="298" y="120">🚶</text>
+      </g>
+      <text x="250" y="155" text-anchor="middle" font-family="Georgia" font-size="9" font-style="italic" fill="#0369a1">Move but stay together</text>
+
+      <!-- gas -->
+      <rect x="340" y="20" width="150" height="120" rx="10" fill="#f0fdf4" stroke="#1f8a70" stroke-width="2" stroke-dasharray="5,3"/>
+      <text x="415" y="14" text-anchor="middle" font-family="Courier New" font-size="11" font-weight="bold" fill="#065f46">GAS</text>
+      <text x="415" y="36" text-anchor="middle" font-family="Georgia" font-size="9" fill="#065f46">Everyone scattered</text>
+      <g font-family="Georgia" font-size="14" text-anchor="middle">
+        <text x="360" y="60">🏃</text><text x="455" y="55">🏃</text>
+        <text x="415" y="85">🏃</text><text x="370" y="110">🏃</text>
+        <text x="450" y="105">🏃</text><text x="395" y="130">🏃</text>
+      </g>
+      <text x="415" y="155" text-anchor="middle" font-family="Georgia" font-size="9" font-style="italic" fill="#065f46">Spread and fill all space</text>
+    </svg>
+    <p class="dcap">The stadium analogy — particles in solids, liquids, and gases behave like crowds in different situations.</p>
+  </div>
+</section>
+
+<!-- SECTION: CHANGES -->
+<section id="changes">
+  <div class="sec-head"><span class="sec-num">5</span><h2>Matter Can Change Its State</h2></div>
+  <div class="card">
+    <p class="lead">Heat and cold can change matter from one state to another — but it's still the same matter!</p>
+    <p>This is key: <mark>the amount of matter doesn't change, only its state does.</mark> Ice → water → steam is still all water.</p>
+  </div>
+  <div class="diagram">
+    <svg viewBox="0 0 500 160" role="img" aria-label="State change cycle: melting, evaporation, condensation, freezing">
+      <!-- boxes -->
+      <rect x="10" y="50" width="100" height="60" rx="10" fill="#dbeafe" stroke="#2b50aa" stroke-width="2"/>
+      <text x="60" y="78" text-anchor="middle" font-family="Courier New" font-size="12" font-weight="bold" fill="#1e3a8a">SOLID</text>
+      <text x="60" y="95" text-anchor="middle" font-family="Georgia" font-size="10" fill="#1e3a8a">Ice 🧊</text>
+
+      <rect x="200" y="50" width="100" height="60" rx="10" fill="#bae6fd" stroke="#0369a1" stroke-width="2"/>
+      <text x="250" y="78" text-anchor="middle" font-family="Courier New" font-size="12" font-weight="bold" fill="#0369a1">LIQUID</text>
+      <text x="250" y="95" text-anchor="middle" font-family="Georgia" font-size="10" fill="#0369a1">Water 💧</text>
+
+      <rect x="390" y="50" width="100" height="60" rx="10" fill="#f0fdf4" stroke="#1f8a70" stroke-width="2"/>
+      <text x="440" y="78" text-anchor="middle" font-family="Courier New" font-size="12" font-weight="bold" fill="#065f46">GAS</text>
+      <text x="440" y="95" text-anchor="middle" font-family="Georgia" font-size="10" fill="#065f46">Steam ☁️</text>
+
+      <!-- arrows solid→liquid -->
+      <path d="M112,68 L196,68" stroke="#d98324" stroke-width="2.5" marker-end="url(#arrowAmber)"/>
+      <text x="154" y="63" text-anchor="middle" font-family="Georgia" font-size="9" fill="#92400e" font-weight="bold">MELTING</text>
+      <text x="154" y="73" text-anchor="middle" font-family="Georgia" font-size="9" fill="#92400e">🔥 Add Heat</text>
+
+      <!-- arrow liquid→solid -->
+      <path d="M196,92 L112,92" stroke="#2b50aa" stroke-width="2.5" marker-end="url(#arrowBlue)"/>
+      <text x="154" y="110" text-anchor="middle" font-family="Georgia" font-size="9" fill="#1e3a8a" font-weight="bold">FREEZING</text>
+      <text x="154" y="120" text-anchor="middle" font-family="Georgia" font-size="9" fill="#1e3a8a">❄️ Remove Heat</text>
+
+      <!-- arrow liquid→gas -->
+      <path d="M302,68 L386,68" stroke="#d98324" stroke-width="2.5" marker-end="url(#arrowAmber)"/>
+      <text x="344" y="63" text-anchor="middle" font-family="Georgia" font-size="9" fill="#92400e" font-weight="bold">EVAPORATION</text>
+      <text x="344" y="73" text-anchor="middle" font-family="Georgia" font-size="9" fill="#92400e">🔥 Add Heat</text>
+
+      <!-- arrow gas→liquid -->
+      <path d="M386,92 L302,92" stroke="#2b50aa" stroke-width="2.5" marker-end="url(#arrowBlue)"/>
+      <text x="344" y="110" text-anchor="middle" font-family="Georgia" font-size="9" fill="#1e3a8a" font-weight="bold">CONDENSATION</text>
+      <text x="344" y="120" text-anchor="middle" font-family="Georgia" font-size="9" fill="#1e3a8a">❄️ Remove Heat</text>
+
+      <defs>
+        <marker id="arrowAmber" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L8,3 z" fill="#d98324"/>
+        </marker>
+        <marker id="arrowBlue" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L8,3 z" fill="#2b50aa"/>
+        </marker>
+      </defs>
+    </svg>
+    <p class="dcap">The water cycle in your kitchen — melting, evaporation, condensation, and freezing.</p>
+  </div>
+  <div class="infonote">
+    <div class="infonote-head">🌍 Real World Connection</div>
+    The water cycle on Earth is matter changing states constantly! Rain (liquid) → puddles evaporate (gas) → clouds form (condensation) → rain again. The same water has been cycling for millions of years.
+  </div>
+</section>
+
+<!-- GAMES SECTION -->
+<section id="games">
+  <div class="sec-head"><span class="sec-num">6</span><h2>Let's Play — Test Your Understanding!</h2></div>
+
+  <!-- GAME 1: DRAG AND DROP -->
+  <div class="game">
+    <h3>🎯 Game 1: Sort the Matter!</h3>
+    <p style="margin-bottom:12px;font-size:.92rem">Drag each item into the correct state of matter box. <strong>Some tricky ones included!</strong></p>
+    <div class="dd-bank" id="chipBank"></div>
+    <div class="dd-bins">
+      <div class="bin" data-bin="solid" id="bin-solid" ondragover="allowDrop(event)" ondrop="dropChip(event)">
+        <div class="bin-label">🧊 SOLID</div>
+      </div>
+      <div class="bin" data-bin="liquid" id="bin-liquid" ondragover="allowDrop(event)" ondrop="dropChip(event)">
+        <div class="bin-label">💧 LIQUID</div>
+      </div>
+      <div class="bin" data-bin="gas" id="bin-gas" ondragover="allowDrop(event)" ondrop="dropChip(event)">
+        <div class="bin-label">💨 GAS</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <button class="btn" onclick="checkDD()">Check ✓</button>
+      <button class="btn ghost" onclick="resetDD()">Reset</button>
+    </div>
+    <div class="feedback" id="ddFb"></div>
+  </div>
+
+  <!-- GAME 2: TAP TO MATCH -->
+  <div class="game">
+    <h3>🔗 Game 2: Match the Property!</h3>
+    <p style="margin-bottom:12px;font-size:.92rem">Tap a <strong>state of matter</strong> on the left, then tap its matching <strong>property</strong> on the right.</p>
+    <div class="match-wrap">
+      <div class="match-col" id="matchLeft"></div>
+      <div class="match-col" id="matchRight"></div>
+    </div>
+    <div class="feedback" id="matchFb"></div>
+  </div>
+
+  <!-- GAME 3: FLASHCARDS -->
+  <div class="game">
+    <h3>🃏 Game 3: Flashcards</h3>
+    <p style="margin-bottom:10px;font-size:.92rem">Tap the card to flip it and reveal the answer!</p>
+    <div class="fc-stage" onclick="flipCard()">
+      <div class="fc-inner" id="fcCard">
+        <div class="fc-face fc-front" id="fcFront"></div>
+        <div class="fc-face fc-back" id="fcBack"></div>
+      </div>
+    </div>
+    <div class="fc-counter" id="fcCounter"></div>
+    <div class="fc-btns">
+      <button class="btn ghost" onclick="prevCard()">← Prev</button>
+      <button class="btn" onclick="nextCard()">Next →</button>
+    </div>
+  </div>
+
+  <!-- GAME 4: CROSSWORD -->
+  <div class="game">
+    <h3>🔤 Game 4: Matter Crossword</h3>
+    <p style="margin-bottom:12px;font-size:.92rem">Fill in the crossword using your knowledge of matter!</p>
+    <div class="cw-layout">
+      <div>
+        <div class="cw-grid" id="cwGrid"></div>
+      </div>
+      <div class="cw-clues">
+        <h4>ACROSS</h4>
+        <ol id="cwAcross" style="padding-left:18px"></ol>
+        <h4>DOWN</h4>
+        <ol id="cwDown" style="padding-left:18px"></ol>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
+      <button class="btn" onclick="checkCW_game()">Check ✓</button>
+      <button class="btn ghost" onclick="revealCW()">Reveal</button>
+      <button class="btn ghost" onclick="clearCW()">Clear</button>
+    </div>
+    <div class="feedback" id="cwFb"></div>
+  </div>
+
+  <!-- GAME 5: SEQUENCER -->
+  <div class="game">
+    <h3>🔢 Game 5: Put It in Order!</h3>
+    <p style="margin-bottom:12px;font-size:.92rem">Arrange these steps of an ice cube melting in the correct order. Use ▲▼ to move items.</p>
+    <ul class="seq-list" id="seqList"></ul>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
+      <button class="btn" onclick="checkSeq()">Check ✓</button>
+      <button class="btn ghost" onclick="resetSeq()">Shuffle</button>
+    </div>
+    <div class="feedback" id="seqFb"></div>
+  </div>
+
+  <!-- GAME 6: TYPE QUIZ -->
+  <div class="game">
+    <h3>🏷️ Game 6: Solid, Liquid or Gas?</h3>
+    <p style="margin-bottom:12px;font-size:.92rem">Tap the correct state of matter for each clue.</p>
+    <div id="typeQuiz"></div>
+    <div class="feedback" id="tqFb"></div>
+  </div>
+
+  <!-- EXIT TICKET -->
+  <div class="exit-ticket">
+    <h4>📝 Exit Ticket — Before You Leave Class</h4>
+    <div class="et-q">1. One thing I discovered today:<br><input class="et-input" type="text" placeholder="Write your discovery..."></div>
+    <div class="et-q">2. One question I still have:<br><input class="et-input" type="text" placeholder="What are you still curious about?"></div>
+    <div class="et-q">3. One place I can see matter changing state in real life:<br><input class="et-input" type="text" placeholder="Think of an example from home or school..."></div>
+  </div>
+</section>
+
+<!-- EXAM -->
+<section id="exam">
+  <div class="sec-head"><span class="sec-num">7</span><h2>Final Quiz · <span id="examCount">15</span> Questions</h2></div>
+  <div class="card">
+    <p>Answer each question — you'll see the explanation right after! Try your best before peeking.</p>
+  </div>
+  <div id="quizContainer"></div>
+</section>
+
+</div><!-- end wrap -->
+
+<footer>NV Classes · Grade 5 Science · Matter Lesson © 2026</footer>
+
+<div class="scorebar">
+  <span style="font-size:.8rem">QUIZ SCORE</span>
+  <span><span id="scoreNum">0</span> / <span id="scoreTotal">15</span></span>
+  <div class="score-track"><div class="score-fill" id="scoreFill" style="width:0"></div></div>
+</div>
+
+<script>
+// ── PROGRESS BAR ──
+const pbar=document.getElementById('progressBar');
+addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  pbar.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
+});
+
+// ── HERO BUBBLES ──
+(function(){
+  const hero=document.querySelector('.hero');
+  for(let i=0;i<12;i++){
+    const b=document.createElement('div');
+    b.className='bubble';
+    const s=Math.random()*60+20;
+    b.style.cssText=`width:${s}px;height:${s}px;left:${Math.random()*100}%;bottom:0;animation-delay:${Math.random()*6}s;animation-duration:${4+Math.random()*5}s`;
+    hero.appendChild(b);
+  }
+})();
+
+// ── GAME 1: DRAG AND DROP ──
+const ddItems=[
+  {label:'Rock',bin:'solid'},{label:'Wood',bin:'solid'},{label:'Ice',bin:'solid'},
+  {label:'Milk',bin:'liquid'},{label:'Honey',bin:'liquid'},{label:'Mercury',bin:'liquid'},
+  {label:'Oxygen',bin:'gas'},{label:'Steam',bin:'gas'},{label:'Smoke',bin:'gas'},
+];
+function buildDD(){
+  const bank=document.getElementById('chipBank');
+  bank.innerHTML='';
+  const shuffled=[...ddItems].sort(()=>Math.random()-.5);
+  shuffled.forEach(item=>{
+    const chip=document.createElement('div');
+    chip.className='chip';
+    chip.textContent=item.label;
+    chip.draggable=true;
+    chip.dataset.bin=item.bin;
+    chip.dataset.label=item.label;
+    chip.addEventListener('dragstart',e=>{e.dataTransfer.setData('text/plain',item.label);});
+    bank.appendChild(chip);
+  });
+  ['solid','liquid','gas'].forEach(b=>{
+    const bin=document.getElementById('bin-'+b);
+    // keep only label
+    bin.innerHTML=`<div class="bin-label">${b==='solid'?'🧊 SOLID':b==='liquid'?'💧 LIQUID':'💨 GAS'}</div>`;
+    bin.addEventListener('dragenter',()=>bin.classList.add('drag-over'));
+    bin.addEventListener('dragleave',()=>bin.classList.remove('drag-over'));
+  });
+  document.getElementById('ddFb').textContent='';
+}
+function allowDrop(e){e.preventDefault();}
+function dropChip(e){
+  e.preventDefault();
+  const label=e.dataTransfer.getData('text/plain');
+  const bin=e.currentTarget;
+  bin.classList.remove('drag-over');
+  // find chip
+  const chips=[...document.querySelectorAll('.chip')];
+  const chip=chips.find(c=>c.dataset.label===label);
+  if(chip) bin.appendChild(chip);
+}
+function checkDD(){
+  let correct=0;
+  document.querySelectorAll('.chip').forEach(chip=>{
+    const parent=chip.closest('.bin');
+    if(parent&&parent.dataset.bin===chip.dataset.bin){
+      chip.classList.add('correct'); chip.classList.remove('wrong'); correct++;
+    } else {
+      chip.classList.add('wrong'); chip.classList.remove('correct');
+    }
+  });
+  const total=ddItems.length;
+  const fb=document.getElementById('ddFb');
+  if(correct===total){fb.textContent=`🎉 Perfect! All ${total} correct!`;fb.className='feedback ok';}
+  else{fb.textContent=`${correct}/${total} correct. Red ones need fixing!`;fb.className='feedback no';}
+}
+function resetDD(){buildDD();}
+buildDD();
+
+// ── GAME 2: TAP TO MATCH ──
+const matchPairs=[
+  {left:'Solid 🧊',right:'Fixed shape and volume',id:0},
+  {left:'Liquid 💧',right:'Takes shape of container',id:1},
+  {left:'Gas 💨',right:'Fills all available space',id:2},
+  {left:'Particles in solid',right:'Vibrate but don\'t move',id:3},
+  {left:'Particles in gas',right:'Move fast and freely',id:4},
+];
+let selLeft=null,matchedCount=0;
+function buildMatch(){
+  const lCol=document.getElementById('matchLeft');
+  const rCol=document.getElementById('matchRight');
+  lCol.innerHTML=''; rCol.innerHTML='';
+  matchedCount=0; selLeft=null;
+  const shuffledR=[...matchPairs].sort(()=>Math.random()-.5);
+  matchPairs.forEach(p=>{
+    const li=document.createElement('div');
+    li.className='m-item'; li.textContent=p.left; li.dataset.id=p.id; li.dataset.side='left';
+    li.onclick=()=>clickMatch(li,'left');
+    lCol.appendChild(li);
+  });
+  shuffledR.forEach(p=>{
+    const ri=document.createElement('div');
+    ri.className='m-item'; ri.textContent=p.right; ri.dataset.id=p.id; ri.dataset.side='right';
+    ri.onclick=()=>clickMatch(ri,'right');
+    rCol.appendChild(ri);
+  });
+  document.getElementById('matchFb').textContent='';
+}
+function clickMatch(el,side){
+  if(el.classList.contains('matched')) return;
+  if(side==='left'){
+    document.querySelectorAll('#matchLeft .m-item').forEach(x=>x.classList.remove('selected'));
+    el.classList.add('selected'); selLeft=el;
+  } else {
+    if(!selLeft) return;
+    if(selLeft.dataset.id===el.dataset.id){
+      selLeft.classList.add('matched'); selLeft.classList.remove('selected');
+      el.classList.add('matched'); matchedCount++;
+      if(matchedCount===matchPairs.length){
+        document.getElementById('matchFb').textContent='🎉 All matched! Great job!';
+        document.getElementById('matchFb').className='feedback ok';
+      }
+    } else {
+      el.classList.add('wrong-flash'); selLeft.classList.add('wrong-flash');
+      setTimeout(()=>{el.classList.remove('wrong-flash');selLeft.classList.remove('wrong-flash');selLeft.classList.remove('selected');},400);
+    }
+    selLeft=null;
+  }
+}
+buildMatch();
+
+// ── GAME 3: FLASHCARDS ──
+const flashcards=[
+  ['What is matter?','Anything that has mass and takes up space'],
+  ['Name the 3 states of matter','Solid, Liquid, Gas'],
+  ['What state has fixed shape AND volume?','Solid — particles are tightly packed'],
+  ['What happens to particles when heated?','They move faster and spread apart'],
+  ['What is melting?','Solid changing to liquid by gaining heat'],
+  ['What is evaporation?','Liquid changing to gas by gaining heat'],
+  ['What is condensation?','Gas changing to liquid by losing heat'],
+  ['What is freezing?','Liquid changing to solid by losing heat'],
+  ['Can gases be compressed?','Yes! Their particles are far apart, so they can be squeezed'],
+  ['Why does perfume spread across a room?','Gas particles move freely and fill all available space'],
+];
+let fcIdx=0,fcFlipped=false;
+function renderCard(){
+  const fc=document.getElementById('fcCard');
+  const card=flashcards[fcIdx];
+  fc.classList.remove('flip'); fcFlipped=false;
+  setTimeout(()=>{
+    document.getElementById('fcFront').textContent=card[0];
+    document.getElementById('fcBack').textContent=card[1];
+  },100);
+  document.getElementById('fcCounter').textContent=`Card ${fcIdx+1} of ${flashcards.length}`;
+}
+function flipCard(){
+  const fc=document.getElementById('fcCard');
+  fcFlipped=!fcFlipped;
+  fc.classList.toggle('flip',fcFlipped);
+}
+function nextCard(){fcIdx=(fcIdx+1)%flashcards.length;renderCard();}
+function prevCard(){fcIdx=(fcIdx-1+flashcards.length)%flashcards.length;renderCard();}
+renderCard();
+
+// ── GAME 4: CROSSWORD ──
+// Layout (6 rows, 8 cols):
+// Row 0: S O L I D . . .
+// Row 1: T . . C E . . .
+// Row 2: E . . E N . . .
+// Row 3: A T O M S . . .
+// Row 4: M . . . E . . .
+// Words:
+// 1 SOLID  across r0c0
+// 2 STEAM  down   r0c0
+// 3 ICE    down   r0c3
+// 4 DENSE  down   r0c4
+// 5 ATOM   across r3c1
+const CW_ROWS=6, CW_COLS=8;
+const cwWords=[
+  {num:1,dir:'across',row:0,col:0,ans:'SOLID',clue:'Has a fixed shape and volume'},
+  {num:2,dir:'down',  row:0,col:0,ans:'STEAM',clue:'Gas produced when water boils hard'},
+  {num:3,dir:'down',  row:0,col:3,ans:'ICE',  clue:'Solid form of water'},
+  {num:4,dir:'down',  row:0,col:4,ans:'DENSE',clue:'Closely packed — describes solids'},
+  {num:5,dir:'across',row:3,col:1,ans:'ATOM', clue:'Tiny building block of all matter'},
+];
+// compute occupied cells
+const cwCells={};
+cwWords.forEach(w=>{
+  for(let i=0;i<w.ans.length;i++){
+    const r=w.dir==='across'?w.row:w.row+i;
+    const c=w.dir==='across'?w.col+i:w.col;
+    const k=r+'_'+c;
+    if(!cwCells[k]) cwCells[k]={letter:w.ans[i],nums:[]};
+    if(i===0) cwCells[k].nums.push(w.num);
+  }
+});
+function buildCWGrid(){
+  const grid=document.getElementById('cwGrid');
+  grid.innerHTML='';
+  for(let r=0;r<CW_ROWS;r++){
+    const row=document.createElement('div'); row.className='cw-row';
+    for(let c=0;c<CW_COLS;c++){
+      const cell=document.createElement('div'); cell.className='cw-cell';
+      const k=r+'_'+c;
+      if(cwCells[k]){
+        const inp=document.createElement('input');
+        inp.type='text'; inp.maxLength=1; inp.id='cw_'+k;
+        inp.addEventListener('input',e=>{e.target.value=e.target.value.toUpperCase().slice(-1);});
+        cell.appendChild(inp);
+        if(cwCells[k].nums.length){
+          const num=document.createElement('span'); num.className='cw-clue-num';
+          num.textContent=cwCells[k].nums[0]; cell.appendChild(num);
+        }
+      } else {
+        cell.classList.add('blocked');
+      }
+      row.appendChild(cell);
+    }
+    grid.appendChild(row);
+  }
+  // build clue lists
+  const across=document.getElementById('cwAcross');
+  const down=document.getElementById('cwDown');
+  across.innerHTML=''; down.innerHTML='';
+  cwWords.forEach(w=>{
+    const li=document.createElement('li');
+    li.innerHTML=`<strong>${w.num}.</strong> ${w.clue}`;
+    li.style.marginBottom='4px';
+    (w.dir==='across'?across:down).appendChild(li);
+  });
+}
+function checkCW_game(){
+  let correct=0,total=0;
+  cwWords.forEach(w=>{
+    for(let i=0;i<w.ans.length;i++){
+      const r=w.dir==='across'?w.row:w.row+i;
+      const c=w.dir==='across'?w.col+i:w.col;
+      const inp=document.getElementById('cw_'+r+'_'+c);
+      if(!inp) continue; total++;
+      const val=(inp.value||'').toUpperCase();
+      if(val===w.ans[i]){inp.parentElement.classList.add('correct-cell');inp.parentElement.classList.remove('wrong-cell');correct++;}
+      else{inp.parentElement.classList.add('wrong-cell');inp.parentElement.classList.remove('correct-cell');}
+    }
+  });
+  const fb=document.getElementById('cwFb');
+  if(correct===total){fb.textContent='🎉 All correct! Well done!';fb.className='feedback ok';}
+  else{fb.textContent=`${correct}/${total} letters correct. Keep trying!`;fb.className='feedback no';}
+}
+function revealCW(){
+  cwWords.forEach(w=>{
+    for(let i=0;i<w.ans.length;i++){
+      const r=w.dir==='across'?w.row:w.row+i;
+      const c=w.dir==='across'?w.col+i:w.col;
+      const inp=document.getElementById('cw_'+r+'_'+c);
+      if(inp){inp.value=w.ans[i];inp.parentElement.classList.add('correct-cell');inp.parentElement.classList.remove('wrong-cell');}
+    }
+  });
+  document.getElementById('cwFb').textContent='Answers revealed!';
+  document.getElementById('cwFb').className='feedback ok';
+}
+function clearCW(){
+  document.querySelectorAll('.cw-cell input').forEach(i=>{i.value='';i.parentElement.classList.remove('correct-cell','wrong-cell');});
+  document.getElementById('cwFb').textContent='';
+}
+buildCWGrid();
+
+// ── GAME 5: SEQUENCER ──
+const seqCorrect=[0,1,2,3,4];
+const seqSteps=[
+  'The ice cube sits on the table at room temperature',
+  'Heat from the room is absorbed by the ice particles',
+  'Ice particles begin to vibrate faster and move apart',
+  'Ice melts — particles slide past each other as liquid water',
+  'Water puddle sits on the plate as liquid',
+];
+let seqOrder=[];
+function shuffleSeq(){
+  do{seqOrder=[...seqCorrect].sort(()=>Math.random()-.5);}
+  while(seqOrder.every((v,i)=>v===seqCorrect[i]));
+}
+function renderSeq(){
+  const list=document.getElementById('seqList');
+  list.innerHTML='';
+  seqOrder.forEach((stepIdx,pos)=>{
+    const li=document.createElement('li'); li.className='seq-item';
+    li.innerHTML=`<div class="seq-btns">
+      <button class="seq-btn" onclick="moveSeq(${pos},-1)" title="Move up">▲</button>
+      <button class="seq-btn" onclick="moveSeq(${pos},1)" title="Move down">▼</button>
+    </div>
+    <div class="seq-num">${pos+1}</div>
+    <div style="font-size:.88rem;font-weight:bold">${seqSteps[stepIdx]}</div>`;
+    list.appendChild(li);
+  });
+  document.getElementById('seqFb').textContent='';
+}
+function moveSeq(i,d){
+  const j=i+d;
+  if(j<0||j>=seqOrder.length) return;
+  [seqOrder[i],seqOrder[j]]=[seqOrder[j],seqOrder[i]];
+  renderSeq();
+}
+function checkSeq(){
+  const correct=seqOrder.every((v,i)=>v===seqCorrect[i]);
+  const fb=document.getElementById('seqFb');
+  if(correct){fb.textContent='🎉 Perfect order! You understand particle behaviour!';fb.className='feedback ok';}
+  else{fb.textContent='Not quite — think about what happens to the particles step by step.';fb.className='feedback no';}
+}
+function resetSeq(){shuffleSeq();renderSeq();}
+shuffleSeq(); renderSeq();
+
+// ── GAME 6: TYPE QUIZ ──
+const tqItems=[
+  {q:'A wooden table top',ans:'solid',opts:['solid','liquid','gas']},
+  {q:'The air inside a football',ans:'gas',opts:['solid','liquid','gas']},
+  {q:'Milk in your glass',ans:'liquid',opts:['solid','liquid','gas']},
+  {q:'The steam above hot soup',ans:'gas',opts:['solid','liquid','gas']},
+  {q:'A chocolate bar before you bite it',ans:'solid',opts:['solid','liquid','gas']},
+  {q:'Petrol in a car\'s fuel tank',ans:'liquid',opts:['solid','liquid','gas']},
+];
+let tqSolved=0;
+function buildTQ(){
+  const container=document.getElementById('typeQuiz');
+  container.innerHTML=''; tqSolved=0;
+  tqItems.forEach((item,idx)=>{
+    const div=document.createElement('div'); div.className='tq-item';
+    div.innerHTML=`<div class="tq-q">${idx+1}. ${item.q}</div><div class="tq-opts" id="tqOpts${idx}"></div>`;
+    item.opts.forEach(opt=>{
+      const btn=document.createElement('button'); btn.className='tq-opt'; btn.textContent=opt;
+      btn.onclick=()=>answerTQ(btn,opt,item.ans,idx);
+      div.querySelector('.tq-opts').appendChild(btn);
+    });
+    container.appendChild(div);
+  });
+  document.getElementById('tqFb').textContent='';
+}
+function answerTQ(btn,chosen,correct,idx){
+  const opts=document.querySelectorAll(`#tqOpts${idx} .tq-opt`);
+  opts.forEach(b=>b.disabled=true);
+  if(chosen===correct){btn.classList.add('correct');tqSolved++;}
+  else{btn.classList.add('wrong');opts.forEach(b=>{if(b.textContent===correct)b.classList.add('correct');});}
+  if(tqSolved===tqItems.length){
+    document.getElementById('tqFb').textContent='🎉 Perfect! You nailed all of them!';
+    document.getElementById('tqFb').className='feedback ok';
+  }
+}
+buildTQ();
+
+// ── FINAL EXAM ──
+const quiz=[
+  {q:'What is matter?',o:['Only things you can see','Anything with mass and volume','Only solids and liquids','Things made of plastic'],a:1,tag:'RECALL',e:'Matter is anything that has mass (weight) and takes up space — including air!'},
+  {q:'Which state of matter has a fixed shape AND a fixed volume?',o:['Gas','Liquid','Solid','Steam'],a:2,tag:'RECALL',e:'Solids have both fixed shape and volume because particles are locked tightly together.'},
+  {q:'You pour water from a round glass into a square box. What changes?',o:['Volume of the water','Mass of the water','Shape of the water','State of the water'],a:2,tag:'CONCEPT',e:'Liquids take the shape of their container but their volume stays the same.'},
+  {q:'Why can a gas be compressed but a liquid cannot?',o:['Gases are lighter','Gas particles have large spaces between them','Liquids are denser','Gases are hotter'],a:1,tag:'CONCEPT',e:'Gas particles are far apart, so there\'s space to push them closer. Liquid particles are already quite close.'},
+  {q:'What is the scientific term for liquid changing to gas?',o:['Freezing','Condensation','Melting','Evaporation'],a:3,tag:'RECALL',e:'Evaporation is when liquid gains heat and becomes gas. Condensation is the reverse.'},
+  {q:'Ice melting in your hand is an example of:',o:['Evaporation','Condensation','Melting','Freezing'],a:2,tag:'RECALL',e:'Heat from your hand goes into the ice, causing it to melt — solid to liquid.'},
+  {q:'The water droplets on a cold glass of water on a hot day are formed by:',o:['Melting','Evaporation','Condensation','Freezing'],a:2,tag:'CONCEPT',e:'Warm air (gas) cools near the glass and turns to liquid water — this is condensation.'},
+  {q:'Which of these is NOT matter?',o:['Air','Sound','Ice','Milk'],a:1,tag:'CONCEPT',e:'Sound is energy (vibration), not matter. It has no mass and doesn\'t take up space.'},
+  {q:'In a solid, the particles...',o:['Move freely in all directions','Slide past each other','Vibrate in fixed positions','Have no attraction'],a:2,tag:'RECALL',e:'Solid particles are held tightly and can only vibrate — they cannot move from their position.'},
+  {q:'What happens to particles when matter is heated?',o:['They get heavier','They move faster and spread out','They stop moving','They join together'],a:1,tag:'CONCEPT',e:'Heat gives particles energy, making them move faster. This is why solids melt and liquids evaporate.'},
+  {q:'A perfume bottle is opened in one corner of a room. Soon everyone can smell it. Why?',o:['The perfume is a liquid that flows','The perfume becomes a gas and particles spread freely','The wind carried it','Heat melted the perfume'],a:1,tag:'CONCEPT',e:'Perfume evaporates into a gas. Gas particles spread freely in all directions to fill the room.'},
+  {q:'Which property is the SAME for both solids and liquids?',o:['Fixed shape','Can be compressed','Fixed volume','Particles move freely'],a:2,tag:'CONCEPT',e:'Both solids and liquids have a fixed volume — they don\'t expand to fill their container like gas does.'},
+  {q:'Which state can be compressed most easily?',o:['Solid','Liquid','Gas','All equally'],a:2,tag:'RECALL',e:'Gas particles are far apart, so gas compresses easily. Solids and liquids cannot be compressed significantly.'},
+  {q:'Water at 0°C is about to freeze. Its particles are...',o:['Moving very fast','Slowing down and arranging into a fixed grid','Spreading out','Getting smaller'],a:1,tag:'CONCEPT',e:'As water cools, particles lose energy, slow down, and lock into the rigid arrangement of ice.'},
+  {q:'Which of these is an example of a liquid at room temperature?',o:['Steel','Oxygen gas','Mercury','Carbon dioxide'],a:2,tag:'RECALL',e:'Mercury is a metal, but it\'s liquid at room temperature! A classic example that surprises many students.'},
+];
+let score=0,answered=0;
+function buildQuiz(){
+  const container=document.getElementById('quizContainer');
+  container.innerHTML='';
+  document.getElementById('examCount').textContent=quiz.length;
+  document.getElementById('scoreTotal').textContent=quiz.length;
+  quiz.forEach((item,idx)=>{
+    const card=document.createElement('div'); card.className='quiz-card';
+    card.innerHTML=`<div class="q-tag">${item.tag}</div>
+      <div class="q-num">Q${idx+1}</div>
+      <div class="q-text">${item.q}</div>
+      <div class="q-opts" id="qOpts${idx}"></div>
+      <div class="explain" id="qExp${idx}">${item.e}</div>`;
+    item.o.forEach((opt,oi)=>{
+      const btn=document.createElement('button'); btn.className='opt'; btn.textContent=opt;
+      btn.onclick=()=>answerQ(btn,oi,item.a,idx);
+      card.querySelector('.q-opts').appendChild(btn);
+    });
+    container.appendChild(card);
+  });
+}
+function answerQ(btn,chosen,correct,idx){
+  const opts=document.querySelectorAll(`#qOpts${idx} .opt`);
+  opts.forEach(b=>b.disabled=true);
+  answered++;
+  if(chosen===correct){btn.classList.add('correct');score++;updateScore();}
+  else{btn.classList.add('wrong');opts[correct].classList.add('correct');}
+  document.getElementById('qExp'+idx).classList.add('show');
+  if(answered===quiz.length) confetti();
+}
+function updateScore(){
+  document.getElementById('scoreNum').textContent=score;
+  document.getElementById('scoreFill').style.width=(score/quiz.length*100)+'%';
+}
+function confetti(){
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  for(let i=0;i<60;i++){
+    const c=document.createElement('div');
+    const colors=['#1f8a70','#d98324','#9b2226','#2b50aa','#caa24a'];
+    c.style.cssText=`position:fixed;top:0;left:${Math.random()*100}vw;width:10px;height:10px;
+      background:${colors[i%colors.length]};border-radius:${Math.random()>0.5?'50%':'2px'};
+      pointer-events:none;z-index:9999`;
+    document.body.appendChild(c);
+    c.animate([{transform:'translateY(0) rotate(0)',opacity:1},{transform:`translateY(${window.innerHeight}px) rotate(${Math.random()*720}deg)`,opacity:0}],
+      {duration:2000+Math.random()*1500,easing:'ease-in',delay:Math.random()*800}).onfinish=()=>c.remove();
+  }
+}
+buildQuiz();
+</script>
+</body>
+</html>
